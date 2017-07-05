@@ -9,14 +9,12 @@ import 'vue-material/dist/vue-material.css';
 import 'fontawesome';
 
 Vue.config.productionTip = false;
+Vue.use(VueMaterial);
 
 /* eslint-disable no-new */
 new Vue({
-    VueMaterial,
     el: '#app',
     router,
     template: '<App/>',
     components: { App }
 });
-
-Vue.use(VueMaterial);

@@ -9,7 +9,7 @@ export default {
     name: 'hello',
     data () {
         return {
-            msg: 'Welcome to Your Football results App!'
+            msg: 'Welcome to Your Football Stats App!'
         };
     }
 };
