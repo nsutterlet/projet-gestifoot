@@ -2,7 +2,7 @@
     <div class="league">
         <md-card>
             <md-card-header>
-                <div class="md-title">{{league.caption}}</div>
+                <div class="md-title">{{league.leagueCaption}}</div>
             </md-card-header>
             <md-card-content>
                 <md-layout md-align="center" md-gutter="16">
@@ -17,11 +17,28 @@
 
 <script>
 
+import axios from 'axios';
+
+const maConfig = { headers: { 'X-Auth-Token': '7b8a71dc7eec4bbca11371f65c4e95ff' } };
+
 export default {
-    name: 'league'
+    data () {
+        this.getLeague();
+        return {
+            league: {}
+        };
+    },
+    name: 'league',
+    methods: {
+        getLeague () {
+            axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable`, maConfig).then((response) => {
+                this.league = response.data;
+            });
+        }
+    }
 };
 </script>
 
 <style>
-  
+
 </style>

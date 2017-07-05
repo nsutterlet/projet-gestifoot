@@ -7,9 +7,9 @@
         <md-card-content>
             <md-layout md-align="center" md-gutter="16">
                 <md-layout md-flex="35">
-                    <md-button>
+                    <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'434'}})">
                         <span class="flag-icon flag-icon-fr">
-                            <router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>
+                            <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
                         </span>
                     </md-button>
                 </md-layout>
@@ -49,30 +49,8 @@
 
 <script>
 
-import axios from 'axios';
-const maConfig = { headers: { 'X-Auth-Token': '7b8a71dc7eec4bbca11371f65c4e95ff' } };
-let league;
-
 export default {
-
-    data() {
-        axios.get('http://api.football-data.org/v1/competitions/' + this.idLeague + '/leagueTable', maConfig).then((response) => {
-            this.league = response.data;
-        });
-        return {
-
-        };
-    },
-
-    name: 'pays',
-
-    methods: {
-        getLeague(idLeague) {
-            axios.get('http://api.football-data.org/v1/competitions/' + this.idLeague + '/leagueTable', maConfig).then((response) => {
-                this.league = response.data;
-            }
-        }
-    }
+    name: 'pays'
 };
 </script>
 
