@@ -2,7 +2,7 @@
     <div class="league">
         <md-card>
             <md-card-header>
-                <div class="md-title"> </div>
+                <div class="md-title">{{league.caption}}</div>
             </md-card-header>
             <md-card-content>
                 <md-layout md-align="center" md-gutter="16">
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'league'
 };
