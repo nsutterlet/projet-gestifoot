@@ -2,8 +2,7 @@
     <div class="league">
         <md-card>
             <md-card-header>
-                <div class="md-title"> {{league.nom}} </div>
-                <div class="md-subhead"> {{league.season}} </div>
+                <div class="md-title"> </div>
             </md-card-header>
             <md-card-content>
                 <md-layout md-align="center" md-gutter="16">
