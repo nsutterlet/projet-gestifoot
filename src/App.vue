@@ -31,6 +31,7 @@
 export default {
     name: 'app'
 };
+
 </script>
 
 <style>
@@ -38,4 +39,5 @@ export default {
     border-radius: 20px;
     font-size: 100px;
 }
+
 </style>

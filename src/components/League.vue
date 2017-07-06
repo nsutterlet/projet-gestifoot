@@ -24,42 +24,48 @@
                         </md-table-header>
     
                         <md-table-body>
-                            <md-table-row v-for="(team,index) in league.standing" :team="team" v-bind:key="index">
-                                <!--<md-table-cell><img src="{{team.crestURI}}" alt="team" width="15px" height="15px"></md-table-cell>-->
-                                <md-table-cell>{{ team.position }}</md-table-cell>
-                                md-button v-on:click.native="$router.push({name:'Team', params:{idTeam:'434'}})">
-                                <md-table-cell>{{ team.teamName }}</md-table-cell>
+                            <md-table-row v-for="(footTeam,index) in league.standing" v-bind:key="index">
+                                <!--<md-table-cell><img src="{{footTeam.crestURI}}" alt="footTeam" width="15px" height="15px"></md-table-cell> -->
+                                <md-table-cell>{{ footTeam.position }}</md-table-cell>
+                               <md-button v-on:click.native="$router.push({name:'Equipe', params:{linkTeam: footTeam._links.team.href }})">
+                                <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
                                 
                                 </md-button>
     
-                                <md-table-cell>{{ team.playedGames }}</md-table-cell>
-                                <md-table-cell>{{ team.wins}}</md-table-cell>
-                                <md-table-cell>{{ team.draws }}</md-table-cell>
-                                <md-table-cell>{{ team.losses }}</md-table-cell>
-                                <md-table-cell>{{ team.goals}}</md-table-cell>
-                                <md-table-cell>{{ team.goalsAgainst }}</md-table-cell>
-                                <md-table-cell>{{ team.points}}</md-table-cell>
+                                <md-table-cell>{{ footTeam.playedGames }}</md-table-cell>
+                                <md-table-cell>{{ footTeam.wins}}</md-table-cell>
+                                <md-table-cell>{{ footTeam.draws }}</md-table-cell>
+                                <md-table-cell>{{ footTeam.losses }}</md-table-cell>
+                                <md-table-cell>{{ footTeam.goals}}</md-table-cell>
+                                <md-table-cell>{{ footTeam.goalsAgainst }}</md-table-cell>
+                                <md-table-cell>{{ footTeam.points}}</md-table-cell>
                             </md-table-row>
                         </md-table-body>
                     </md-table>
                 </md-layout>
-<!--                <md-layout md-align="center" md-gutter="16">
-    
+                 <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
+ 
+                
+                 <md-layout md-align="center" md-gutter="16">
+                <div class="md-title">Journée : {{league.matchday}}</div>
+           </md-layout>
+                <md-layout md-align="center" md-gutter="16">
+                
                     <md-table>
                         </md-table-header>
-    
+                        
                         <md-table-body>
-                            <md-table-row v-for="(game,index) in journey.standing" :team="team" v-bind:key="index">
-                                <!--<md-table-cell><img src="{{team.crestURI}}" alt="team" width="15px" height="15px"></md-table-cell>
-                                <md-table-cell>{{ game.home}}</md-table-cell>
-                                <md-table-cell>{{ game.score }}</md-table-cell>
+                            <md-table-row v-for="(game,index) in journey.fixtures" v-bind:key="index">
+                                <!--<md-table-cell><img src="{{team.crestURI}}" alt="team" width="15px" height="15px"></md-table-cell>!-->
+                                <md-table-cell>{{ game.homeTeamName}}</md-table-cell>
+                                <md-table-cell>{{ game.result.goalsHomeTeam}}</md-table-cell>
                                 <md-table-cell> - </md-table-cell>
-                                <md-table-cell>{ game.score }}</md-table-cell>
-                                <md-table-cell>{{ game.away }}</md-table-cell>
+                                <md-table-cell>{{game.result.goalsAwayTeam}}</md-table-cell>
+                                <md-table-cell>{{ game.awayTeamName }}</md-table-cell>
                             </md-table-row>
                         </md-table-body>
                     </md-table>
-                </md-layout>-->
+                </md-layout>
             </md-card-content>
         </md-card>
     </div>
@@ -74,7 +80,7 @@ const maConfig = { headers: { 'X-Auth-Token': '7b8a71dc7eec4bbca11371f65c4e95ff'
 export default {
     data () {
         this.getLeague();
-       // this.getJourney();
+        this.getJourney();
         return {
             league: {},
             journey: {}
@@ -86,12 +92,12 @@ export default {
             axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable`, maConfig).then((response) => {
                 this.league = response.data;
             });
+        },
+        getJourney () {
+            axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/fixtures?matchday=38`, maConfig).then((response) => {
+                this.journey = response.data;
+            });
         }
-        // getJourney (matchday) {
-        //     axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable/?matchday=${this.league.matchday}`, maConfig).then((response) => {
-        //         this.journey = response.data;
-        //     });
-        // }
     }
 };
 </script>

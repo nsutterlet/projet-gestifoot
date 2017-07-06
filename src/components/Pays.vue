@@ -5,15 +5,14 @@
             <div class="md-subhead">by Hugo & Nico</div>
         </md-card-header>
         <md-card-content>
-            <md-layout md-align="center" md-gutter="16">
-                <md-layout md-flex="35">
+            
+            <md-layout md-align="center " md-gutter="16 ">
+                <md-layout md-flex="35 ">
                     <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'434'}})">
-                        <span class="flag-icon flag-icon-fr">
-                            <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
-                        </span>
+                        <span class="flag-icon flag-icon-fr"></span>
                     </md-button>
                 </md-layout>
-                <md-layout md-flex=" 35 ">
+                <md-layout md-flex="35 ">
                     <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'439'}})">
                         <span class="flag-icon flag-icon-pt "></span>
                     </md-button>
