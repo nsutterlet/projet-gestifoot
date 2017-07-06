@@ -22,7 +22,7 @@
                                 <md-table-head>D</md-table-head>
                                 <md-table-head>BM</md-table-head>
                                 <md-table-head>BE</md-table-head>
-                                <md-table-head>Point</md-table-head>
+                                <md-table-head>Points</md-table-head>
                             </md-table-row>
                         </md-table-header>
     
