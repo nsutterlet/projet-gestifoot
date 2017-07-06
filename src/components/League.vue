@@ -10,8 +10,8 @@
                     <md-table>
                         <md-table-header>
                             <md-table-row>
-                                <!--<md-table-head ></md-table-head>-->
                                 <md-table-head>Position</md-table-head>
+                                <md-table-head ></md-table-head>
                                 <md-table-head>Equipe</md-table-head>
                                 <md-table-head>J</md-table-head>
                                 <md-table-head>V</md-table-head>
@@ -25,13 +25,11 @@
     
                         <md-table-body>
                             <md-table-row v-for="(footTeam,index) in league.standing" v-bind:key="index">
-                                <md-table-cell><img :src="footTeam.crestURI" alt="logo" width="20px" height="20px"></md-table-cell>
                                 <md-table-cell>{{ footTeam.position }}</md-table-cell>
-                               <md-button v-on:click.native="$router.push({name:'Equipe', params:{linkTeam: footTeam._links.team.href }})">
-                                <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
-                                
+                                <md-table-cell><img :src="footTeam.crestURI" alt="logo" width="20px" height="20px"></md-table-cell>
+                                <md-button v-on:click.native="$router.push({name:'Equipe', params:{linkTeam: footTeam._links.team.href }})">
+                                    <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
                                 </md-button>
-    
                                 <md-table-cell>{{ footTeam.playedGames }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.wins}}</md-table-cell>
                                 <md-table-cell>{{ footTeam.draws }}</md-table-cell>
@@ -41,19 +39,19 @@
                                 <md-table-cell>{{ footTeam.points}}</md-table-cell>
                             </md-table-row>
                         </md-table-body>
+    
                     </md-table>
                 </md-layout>
-                 <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
- 
-                
-                 <md-layout md-align="center" md-gutter="16">
-                <div class="md-title">Journée : {{league.matchday}}</div>
-           </md-layout>
+                <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
+    
                 <md-layout md-align="center" md-gutter="16">
-                
+                    <div class="md-title">Journée : {{league.matchday}}</div>
+                </md-layout>
+                <md-layout md-align="center" md-gutter="16">
+    
                     <md-table>
                         </md-table-header>
-                        
+    
                         <md-table-body>
                             <md-table-row v-for="(game,index) in journey.fixtures" v-bind:key="index">
                                 <!--<md-table-cell><img src="{{team.crestURI}}" alt="team" width="15px" height="15px"></md-table-cell>!-->
