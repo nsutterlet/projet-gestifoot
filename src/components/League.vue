@@ -23,6 +23,10 @@
                                 <md-table-head>BM</md-table-head>
                                 <md-table-head>BE</md-table-head>
                                 <md-table-head>Points</md-table-head>
+<<<<<<< HEAD
+=======
+                                <md-table-head></md-table-head>
+>>>>>>> 2829ef135c93ec0bd88c5b73caca55109c7a62be
                             </md-table-row>
                         </md-table-header>
     
@@ -40,6 +44,7 @@
                                 <md-table-cell>{{ footTeam.goals}}</md-table-cell>
                                 <md-table-cell>{{ footTeam.goalsAgainst }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.points}}</md-table-cell>
+                                <md-table-cell><md-button v-on:click="addToList($footTeam.teamName, $footTeam.crestURI)"><md-icon>add</md-icon></md-button></md-table-cell>
                             </md-table-row>
                         </md-table-body>
     
@@ -63,9 +68,12 @@ export default {
     data () {
         this.getLeague();
         this.getJourney();
+        let maList;
+
         return {
             league: {},
-            journey: {}
+            journey: {},
+            maList
         };
     },
     name: 'league',
@@ -79,6 +87,16 @@ export default {
             axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/fixtures?matchday=38`, maConfig).then((response) => {
                 this.journey = response.data;
             });
+        },
+        addToList (nom, logoURI) {
+            const team = {
+                nom: this.nom,
+                logoURI: this.logoURI
+            };
+            this.maList.push(team);
+        },
+        removeFromList (team) {
+            this.maList.splice(this.maList.indexOf(team), 1);
         }
     }
 };

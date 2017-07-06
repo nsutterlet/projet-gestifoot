@@ -40,8 +40,7 @@ export default {
 </script>
 
 <style>
-.flag-icon {
-    border-radius: 20px;
-    font-size: 150px;
+.img-league {
+    width: 150px;
 }
 </style>
