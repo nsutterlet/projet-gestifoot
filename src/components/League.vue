@@ -25,7 +25,7 @@
     
                         <md-table-body>
                             <md-table-row v-for="(footTeam,index) in league.standing" v-bind:key="index">
-                                <!--<md-table-cell><img src="{{footTeam.crestURI}}" alt="footTeam" width="15px" height="15px"></md-table-cell> -->
+                                <md-table-cell><img :src="footTeam.crestURI" alt="logo" width="20px" height="20px"></md-table-cell>
                                 <md-table-cell>{{ footTeam.position }}</md-table-cell>
                                <md-button v-on:click.native="$router.push({name:'Equipe', params:{linkTeam: footTeam._links.team.href }})">
                                 <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
