@@ -20,13 +20,13 @@
   
         
     <md-toolbar>
-        <md-button class="md-icon-button" href="/">
+        <md-button class="md-icon-button" v-on:click="$router.push({name: 'Pays'})">
             <md-icon>home</md-icon>
         </md-button>
     
         <h2 class="md-title" style="flex: 1">GestiFoot</h2>
 
-         <md-button class="md-icon-button" href="/favoris">
+         <md-button class="md-icon-button" v-on:click="$router.push({name: 'Favoris'})">
             <md-icon>favorite</md-icon>
         </md-button>
     </md-toolbar>

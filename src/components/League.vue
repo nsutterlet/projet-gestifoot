@@ -23,7 +23,7 @@
                                 <md-table-head>BM</md-table-head>
                                 <md-table-head>BE</md-table-head>
                                 <md-table-head>Points</md-table-head>
-                                <md-table-head>Fav</md-table-head>
+                                <md-table-head>Favoris</md-table-head>
                             </md-table-row>
                         </md-table-header>
     
@@ -31,9 +31,7 @@
                             <md-table-row v-for="(footTeam,index) in league.standing" v-bind:key="index">
                                 <md-table-cell>{{ footTeam.position }}</md-table-cell>
                                 <md-table-cell><img :src="footTeam.crestURI" alt="logo" width="20px" height="20px"></md-table-cell>
-                                <md-button v-on:click.native="$router.push({name:'Equipe', params:{linkTeam: footTeam._links.team.href }})">
-                                    <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
-                                </md-button>
+                                <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.playedGames }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.wins}}</md-table-cell>
                                 <md-table-cell>{{ footTeam.draws }}</md-table-cell>
@@ -41,7 +39,10 @@
                                 <md-table-cell>{{ footTeam.goals}}</md-table-cell>
                                 <md-table-cell>{{ footTeam.goalsAgainst }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.points}}</md-table-cell>
-                                <md-table-cell><md-button v-on:click="addToList(footTeam)"><md-icon>add</md-icon></md-button></md-table-cell>
+                                <md-table-cell>
+                                    <md-button v-if="isFavorite(footTeam.teamName)" v-on:click="removeFromList(footTeam)"><md-icon>remove</md-icon></md-button>
+                                    <md-button v-else v-on:click="addToList(footTeam)"><md-icon>add</md-icon></md-button>
+                                </md-table-cell>
                             </md-table-row>
                         </md-table-body>
     
@@ -86,12 +87,12 @@ export default {
     name: 'league',
     methods: {
         getLeague () {
-            axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable`, maConfig).then((response) => {
+            axios.get(`https://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable`, maConfig).then((response) => {
                 this.league = response.data;
             });
         },
         getJourney () {
-            axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/fixtures?matchday=38`, maConfig).then((response) => {
+            axios.get(`https://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/fixtures?matchday=38`, maConfig).then((response) => {
                 this.journey = response.data;
             });
         },
@@ -104,6 +105,14 @@ export default {
         },
         removeFromList (equipe) {
             this.maList.splice(this.maList.indexOf(equipe), 1);
+        },
+        isFavorite (teamName) {
+            for (let team of this.maList) {
+                if (team.nom === teamName) {
+                    return true;
+                }
+            }
+            return false;
         }
     },
     watch: {
