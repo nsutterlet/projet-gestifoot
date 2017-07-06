@@ -4,7 +4,6 @@ import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 import League from '@/components/League';
 import Pays from '@/components/Pays';
-import Equipe from '@/components/Equipe';
 import Journey from '@/components/Journey';
 import Favoris from '@/components/Favoris';
 
@@ -21,11 +20,6 @@ export default new Router({
             path: '/',
             name: 'Pays',
             component: Pays
-        },
-        {
-            path: '/equipe',
-            name: 'Equipe',
-            component: Equipe
         },
         {
             path: '/league/:idLeague/journey/:matchday',

@@ -47,12 +47,12 @@ export default {
     name: 'league',
     methods: {
         getLeague () {
-            axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable`, maConfig).then((response) => {
+            axios.get(`https://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/leagueTable`, maConfig).then((response) => {
                 this.league = response.data;
             });
         },
         getJourney () {
-            axios.get(`http://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/fixtures?matchday=${this.$route.params.matchday}`, maConfig).then((response) => {
+            axios.get(`https://api.football-data.org/v1/competitions/${this.$route.params.idLeague}/fixtures?matchday=${this.$route.params.matchday}`, maConfig).then((response) => {
                 this.journey = response.data;
             });
         }
