@@ -1,8 +1,8 @@
 <template>
-    <div class="league">
+    <div class="journey">
         <md-card>
             <md-card-header>
-                <div class="md-title">{{league.leagueCaption}}</div>
+                <div class="md-display-1 titre-vues">{{league.leagueCaption}}</div>
     
             </md-card-header>
             <md-card-content>
@@ -16,11 +16,11 @@
                         </md-table-header>
                         <md-table-body>
                             <md-table-row v-for="(game,index) in journey.fixtures" v-bind:key="index">
-                                <md-table-cell>{{ game.homeTeamName}}</md-table-cell>
+                                <md-table-cell class="home-name">{{ game.homeTeamName}}</md-table-cell>
                                 <md-table-cell>{{ game.result.goalsHomeTeam}}</md-table-cell>
                                 <md-table-cell> - </md-table-cell>
                                 <md-table-cell>{{game.result.goalsAwayTeam}}</md-table-cell>
-                                <md-table-cell>{{ game.awayTeamName }}</md-table-cell>
+                                <md-table-cell class="away-name">{{ game.awayTeamName }}</md-table-cell>
                             </md-table-row>
                         </md-table-body>
                     </md-table>
@@ -59,7 +59,13 @@ export default {
     }
 };
 </script>
-</script>
+<style>
 
-
+.journey {
+    flex-direction: column;
+    flex: 1;
+}
+.away-name{
+    text-align: right;
+}
 </style>
