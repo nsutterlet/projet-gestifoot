@@ -23,10 +23,7 @@
                                 <md-table-head>BM</md-table-head>
                                 <md-table-head>BE</md-table-head>
                                 <md-table-head>Points</md-table-head>
-<<<<<<< HEAD
-=======
-                                <md-table-head></md-table-head>
->>>>>>> 2829ef135c93ec0bd88c5b73caca55109c7a62be
+                                <md-table-head>Fav</md-table-head>
                             </md-table-row>
                         </md-table-header>
     
