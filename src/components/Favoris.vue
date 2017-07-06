@@ -2,7 +2,7 @@
     <div class="favoris">
         <md-card>
             <md-card-header>
-                <div class="md-display-1 titre-vues">Mes equipes favorites</div>
+                <div class="md-display-1 titre-vues">Mes équipes favorites</div>
             </md-card-header>
             <md-card-content>
                 <md-layout md-align="center" md-gutter="16">
