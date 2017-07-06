@@ -1,20 +1,6 @@
 <template>
   <div id="app">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Pacifico|Vibur:300,400,500,700,400italic">
-    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="manifest" href="static/manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Shop Memo">
-    <meta name="apple-mobile-web-app-title" content="Shop Memo">
-    <meta name="theme-color" content="#388E3C">
-    <meta name="msapplication-navbutton-color" content="#388E3C">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="msapplication-starturl" content="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" sizes="192x192" href="static/icons/logo-192.png">
-    <link rel="apple-touch-icon" href="static/icons/logo-192.png">
+
 
 
   
@@ -31,7 +17,7 @@
         </md-button>
     </md-toolbar>
 
-        <router-view></router-view>
+        <router-view class="main-content"></router-view>
     </div>
 </template>
 
@@ -46,5 +32,34 @@ export default {
 <style>
 .img-league {
     width: 150px;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.md-card {
+    flex-direction: column;
+    flex: 1;
+}
+.md-table{
+    flex-direction: column;
+    flex: 1;
+}
+.titre-vues {
+    font-family: Verdana;
+    color: grey;
+    text-align: center;
+}
+.md-icon {
+    color:white;
+}
+.md-toolbar .md-title{
+    color: white;
 }
 </style>

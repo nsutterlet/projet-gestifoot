@@ -10,6 +10,7 @@ import 'fontawesome';
 
 Vue.config.productionTip = false;
 Vue.use(VueMaterial);
+Vue.material.setCurrentTheme('default');
 
 /* eslint-disable no-new */
 new Vue(
@@ -19,3 +20,13 @@ new Vue(
         template: '<App/>',
         components: { App }
     });
+
+Vue.material.registerTheme('default', {
+    primary: 'light-green',
+    accent: 'red',
+    warn: 'red',
+    background: {
+        color: 'green',
+        hue: '50',
+        textColor: 'black'}
+});

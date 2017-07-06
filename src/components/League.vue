@@ -1,20 +1,23 @@
 <template>
     <div class="league">
-        <md-card>
+        <md-card class="md-league">
             <md-card-header>
-                <div class="md-title">{{league.leagueCaption}}</div>
-                <md-button class="md-raised md-primary" v-on:click.native="$router.push({name:'Journey', params:{matchday: league.matchday }})">
-                    Dernière journée
-                </md-button>
+                <div class="md-display-1">{{league.leagueCaption}}</div>
             </md-card-header>
             <md-card-content>
                 <md-layout md-align="center" md-gutter="16">
-
+                    <md-button class="md-raised md-primary" v-on:click.native="$router.push({name:'Journey', params:{matchday: league.matchday }})">
+                        Dernière journée
+                    </md-button>
+                </md-layout>
+                
+                <md-layout md-align="center" md-gutter="16">
+    
                     <md-table>
                         <md-table-header>
                             <md-table-row>
                                 <md-table-head>Position</md-table-head>
-                                <md-table-head ></md-table-head>
+                                <md-table-head></md-table-head>
                                 <md-table-head>Equipe</md-table-head>
                                 <md-table-head>J</md-table-head>
                                 <md-table-head>V</md-table-head>
@@ -26,11 +29,12 @@
                                 <md-table-head>Favoris</md-table-head>
                             </md-table-row>
                         </md-table-header>
-    
                         <md-table-body>
                             <md-table-row v-for="(footTeam,index) in league.standing" v-bind:key="index">
                                 <md-table-cell>{{ footTeam.position }}</md-table-cell>
-                                <md-table-cell><img :src="footTeam.crestURI" alt="logo" width="20px" height="20px"></md-table-cell>
+                                <md-table-cell>
+                                    <img :src="footTeam.crestURI" alt="logo" width="20px" height="20px">
+                                </md-table-cell>
                                 <md-table-cell>{{ footTeam.teamName }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.playedGames }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.wins}}</md-table-cell>
@@ -40,8 +44,12 @@
                                 <md-table-cell>{{ footTeam.goalsAgainst }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.points}}</md-table-cell>
                                 <md-table-cell>
-                                    <md-button v-if="isFavorite(footTeam.teamName)" v-on:click="removeFromList(footTeam)"><md-icon>remove</md-icon></md-button>
-                                    <md-button v-else v-on:click="addToList(footTeam)"><md-icon>add</md-icon></md-button>
+                                    <md-button v-if="isFavorite(footTeam.teamName)" v-on:click="removeFromList(footTeam)">
+                                        <md-icon>remove</md-icon>
+                                    </md-button>
+                                    <md-button v-else v-on:click="addToList(footTeam)">
+                                        <md-icon>add</md-icon>
+                                    </md-button>
                                 </md-table-cell>
                             </md-table-row>
                         </md-table-body>
@@ -50,7 +58,6 @@
                 </md-layout>
                 <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
     
-
             </md-card-content>
         </md-card>
     </div>
@@ -135,5 +142,18 @@ export default {
 .thd {
     text-align: center;
     Font-Weight: Bold;
+}
+.md-card {
+    flex-direction: column;
+    flex: 1;
+}
+.md-table{
+    flex-direction: column;
+    flex: 1;
+}
+.md-display-1{
+    font-family: Verdana;
+    color: grey;
+    text-align: center;
 }
 </style>
