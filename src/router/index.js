@@ -6,6 +6,7 @@ import League from '@/components/League';
 import Pays from '@/components/Pays';
 import Equipe from '@/components/Equipe';
 import Journey from '@/components/Journey';
+import Favoris from '@/components/Favoris';
 
 Vue.use(Router, VueMaterial);
 
@@ -30,6 +31,11 @@ export default new Router({
             path: '/league/:idLeague/journey/:matchday',
             name: 'Journey',
             component: Journey
+        },
+        {
+            path: '/favoris',
+            name: 'Favoris',
+            component: Favoris
         }
     ]
 });

@@ -25,6 +25,10 @@
         </md-button>
     
         <h2 class="md-title" style="flex: 1">GestiFoot</h2>
+
+         <md-button class="md-icon-button" href="/favoris">
+            <md-icon>favorite</md-icon>
+        </md-button>
     </md-toolbar>
 
         <router-view></router-view>
