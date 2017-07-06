@@ -1,0 +1,15 @@
+{
+  "name": "GestiFoot",
+  "short_name": "nN",
+  "lang": "fr",
+  "start_url": "https://heg-web.github.io/projet-gestifoot/",
+  "display": "standalone",
+  "theme_color": "green",
+  "icons": [
+    {
+      "src": "static/favicon.png",
+      "sizes": "192x192",
+      "type": "png"
+    }
+  ]
+}
