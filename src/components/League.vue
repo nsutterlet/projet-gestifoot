@@ -3,10 +3,13 @@
         <md-card>
             <md-card-header>
                 <div class="md-title">{{league.leagueCaption}}</div>
+                <md-button class="md-raised md-primary" v-on:click.native="$router.push({name:'Journey', params:{matchday: league.matchday }})">
+                    Dernière journée
+                </md-button>
             </md-card-header>
             <md-card-content>
                 <md-layout md-align="center" md-gutter="16">
-    
+
                     <md-table>
                         <md-table-header>
                             <md-table-row>
@@ -44,26 +47,7 @@
                 </md-layout>
                 <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
     
-                <md-layout md-align="center" md-gutter="16">
-                    <div class="md-title">Journée : {{league.matchday}}</div>
-                </md-layout>
-                <md-layout md-align="center" md-gutter="16">
-    
-                    <md-table>
-                        </md-table-header>
-    
-                        <md-table-body>
-                            <md-table-row v-for="(game,index) in journey.fixtures" v-bind:key="index">
-                                <!--<md-table-cell><img src="{{team.crestURI}}" alt="team" width="15px" height="15px"></md-table-cell>!-->
-                                <md-table-cell>{{ game.homeTeamName}}</md-table-cell>
-                                <md-table-cell>{{ game.result.goalsHomeTeam}}</md-table-cell>
-                                <md-table-cell> - </md-table-cell>
-                                <md-table-cell>{{game.result.goalsAwayTeam}}</md-table-cell>
-                                <md-table-cell>{{ game.awayTeamName }}</md-table-cell>
-                            </md-table-row>
-                        </md-table-body>
-                    </md-table>
-                </md-layout>
+
             </md-card-content>
         </md-card>
     </div>
