@@ -41,7 +41,7 @@
                                 <md-table-cell>{{ footTeam.goals}}</md-table-cell>
                                 <md-table-cell>{{ footTeam.goalsAgainst }}</md-table-cell>
                                 <md-table-cell>{{ footTeam.points}}</md-table-cell>
-                                <md-table-cell><md-button v-on:click="addToList($footTeam.teamName, $footTeam.crestURI)"><md-icon>add</md-icon></md-button></md-table-cell>
+                                <md-table-cell><md-button v-on:click="addToList(footTeam)"><md-icon>add</md-icon></md-button></md-table-cell>
                             </md-table-row>
                         </md-table-body>
     
@@ -60,12 +60,22 @@
 import axios from 'axios';
 
 const maConfig = { headers: { 'X-Auth-Token': '7b8a71dc7eec4bbca11371f65c4e95ff' } };
+const LOCALSTORAGE_KEY = 'malist-fav';
 
 export default {
     data () {
         this.getLeague();
         this.getJourney();
         let maList;
+        try {
+            const jsonList = localStorage.getItem(LOCALSTORAGE_KEY);
+            maList = JSON.parse(jsonList);
+            if (!maList) {
+                throw new Error();
+            }
+        } catch (e) {
+            maList = [];
+        }
 
         return {
             league: {},
@@ -85,15 +95,24 @@ export default {
                 this.journey = response.data;
             });
         },
-        addToList (nom, logoURI) {
-            const team = {
-                nom: this.nom,
-                logoURI: this.logoURI
+        addToList (team) {
+            const equipe = {
+                nom: team.teamName,
+                logoURI: team.crestURI
             };
-            this.maList.push(team);
+            this.maList.push(equipe);
         },
-        removeFromList (team) {
-            this.maList.splice(this.maList.indexOf(team), 1);
+        removeFromList (equipe) {
+            this.maList.splice(this.maList.indexOf(equipe), 1);
+        }
+    },
+    watch: {
+        maList: {
+            handler () {
+                const jsonList = JSON.stringify(this.maList);
+                localStorage.setItem(LOCALSTORAGE_KEY, jsonList);
+            },
+            deep: true
         }
     }
 };
