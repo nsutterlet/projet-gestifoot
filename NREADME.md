@@ -1,5 +1,11 @@
 # Gestifoot
+Auteur : Hugo Gonçalves et Nicolas Sutterlet
+
+Date : 2017-07-06
+
 Ce projet a été réalisé dans le cadre de la HEG Arc pour le cours Projet Web. Le but de l'application est d'afficher le classement et les dernières résultats des championnats principaux. Elle permet également de sélectionner une équipe et de la mettre dans une liste de club favorit.
+
+
 
 
 ## Outils utilisés
@@ -8,14 +14,14 @@ ___
 * [Microsoft Visual Studio](https://code.visualstudio.com/) IDE
 * [NPM](https://www.npmjs.com/) Pakage manager pour JavaScript
 * [WebPack](https://webpack.github.io/docs/) Webpack génère des éléments statiques représentant les dependances des modules
-* [jQuery](https://jquery.com/) Librairie JavaScript
 * [Node.js](https://nodejs.org/en/) JavaScript runtime
+* [Vue Material](https://http://vuematerial.io) est le framewotk pour les applications Web puissantes et conçues qui peuvent être adaptées à chaque écran
+* [API football data](http://football-data.org/index) permet de récupérer les données de championnats de football (match, classement) et leur équipes (y. c. joueurs)
 
 
 
 ### Librairies CSS et outils utilisés pour le CSS
 * [Boostrap](http://getbootstrap.com/) est le framework HTML, CSS et JavaScript le plus populaire pour le développement de projets responsive
-* [Vue Material](https://http://vuematerial.io) est le framewotk pour les applications Web puissantes et conçues qui peuvent être adaptées à chaque écran
 * [Font-Awesome](http://fontawesome.io/) est une police d'icones et CSS
 * [Color palette Material](https://material.io/guidelines/style/color.html#color-color-tool) permet de choisir des belles couleurs 
 
@@ -155,158 +161,109 @@ Pour que l'application soit agréable à consulter sur smartphone et tablettes e
 
 ```
 ### App.vue
-Ce fichier contient la nomenclature
+Ce fichier contient la nomenclature de notre app
+```javascript
+<template>
+    <div id="app">
+    
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'app'
+};
+
+</script>
+
+<style>
+
+</style>
+```
+
 ### router/index.js
 Ce fichier contiendra les routes pour accéder à nos vus
 ```javascript
-import Chart from 'chart.js';
+import Vue from 'vue';
+import Router from 'vue-router';
+import VueMaterial from 'vue-material';
+import 'vue-material/dist/vue-material.css';
+import Pays from '@/components/Pays';
 
-/* Transformation de la page à placer dans $(document).ready(function () */
-    transformPage();
 
-/* Récupération des progress-bar */
-var listProgress = $('.progress');
+Vue.use(Router, VueMaterial);
 
-/* Extraction des données d'une progress-bar */
-function extractDataFromProgress(progress) {
-    const bar = progress.children[0];
-    const val = $(bar).attr('aria-valuenow');
-    return val;
-}
-
-/* Fonction de création du chart */
-function makeChart(c, val) {
-    let option = {
-        type: 'doughnut',
-        data: {
-
-            datasets: [
-                {
-                    backgroundColor: ['#808080', 'transparent'],
-                    borderColor: ['transparent', 'transparent'],
-                    data: [val, 100 - val]
-                }
-            ]
+export default new Router({
+    routes: [
+        {
+            path: '/',
+            name: 'Pays',
+            component: Pays
         },
-        options: {
-            tooltips: { enabled: false },
-            hover: { mode: null }
+        ...
+    ]
+});
+```
+
+## LocalStorage
+
+Lorsqu'une personne décide de mettre une équipe dans les favoris, elle est stockée dans le cache.
+```javascript
+const LOCALSTORAGE_KEY = 'malist-fav';
+let maList;
+
+export default {
+    name: 'favoris',
+    data () {
+        try {
+            const jsonList = localStorage.getItem(LOCALSTORAGE_KEY);
+            maList = JSON.parse(jsonList);
+            if (!maList) {
+                throw new Error();
+            }
+        } catch (e) {
+            maList = [];
         }
-    };
-    new Chart(c, option);
-}
-
-/* Tranformation de la page */
-function transformPage() {
-    for (let progress of listProgress) {
-        const val = extractDataFromProgress(progress);
-        const c = $('<canvas></canvas>');
-        $(progress).replaceWith(c);
-        makeChart(c, val);
+        return {
+            maList
+        };
+    },
+    methods: {
+        removeFromList (equipe) {
+            this.maList.splice(this.maList.indexOf(equipe), 1);
+        }
+    },
+    watch: {
+        maList: {
+            handler () {
+                const jsonList = JSON.stringify(this.maList);
+                localStorage.setItem(LOCALSTORAGE_KEY, jsonList);
+            },
+            deep: true
+        }
     }
-}
-
-
-#### Jquery Smooth Scrooll
-Ce plugin permet une navigation fluide entre les sections de la page HTML
-##### Installation
-```batch
-$ npm install jquery-smooth-scoll --save
+};
 ```
-##### Importation et utilisation dans le main.js
-```javascript
-import 'jquery-smooth-scroll';
 
- /* Activation du smoothscroll à placer dans $(document).ready(function () */
-    $('a').smoothScroll({
-        offset: -50,
-        speed: 1000
-    });
-```
-> L'effet est appliqué au menu ansi qu'au bouton de retour vers le haut de la page. Il est possible de le parametrer finement en suivant la [documentation](https://github.com/kswedberg/jquery-smooth-scroll).
+## Divers
 
-#### Jquery jquery-tooltips
-___
-Ce plugin m'a permis d'ajouter une info bulle lorsque l'on passe avec la souris sur le bouton de retour vers le haut.
-##### Installation
-```batch
-$ npm install jquery-tooltipster --save
-```
-##### Importation et utilisation dans le main.js
-```javascript
-import 'tooltipster/dist/css/tooltipster.bundle.min.css';// Import du CSS
-import 'tooltipster';// Import du plugin
+### Image
+Toutes les images utilisés  pour les logos des championnats des ligues sont en local (static). Les autres proviennent de l'API.
 
-/* tooltipster sur le bouton de retour vers le haut à placer dans $(document).ready(function () */
-    $('.tooltip-custom').tooltipster({
-        theme: 'tooltipster-cv',// Appel de mon CSS personnalisé
-        animation: 'grow'// Définition du type d'animation
-    });
-```
-##### Utilisation dans le HTML
-```html
-<!-- Il suffit d'ajouter le titre à afficher dans l'infobulle -->
-<a class="btn-back-top" href="#top">
-    <i class="fa fa-arrow-up tooltip-custom" title="Retourner en haut de la page!" aria-hidden="true">
-    </i>
-</a>
-```
-##### CSS perso
-```css
-/* Personnalisation tooltipster pour concordance avec les couleurs du cv */
-.tooltipster-sidetip.tooltipster-cv .tooltipster-box{
-    border-radius:5px;
-    border:none;
-    border-bottom:3px solid gray;
-    border-right: 2px solid gray;
-    background:#2a2a2a;
-}
+## Problème et solution
 
-.tooltipster-sidetip.tooltipster-cv.tooltipster-top .tooltipster-arrow-border{
-    border-top-color: gray;
-}
+Par manque de temps et également ayant dû assimiler le fonctionnement et mécanisme de Vue.js en une petite semaine, beaucoup d'amélioration peuvent être faites.
 
-.tooltipster-sidetip.tooltipster-cv.tooltipster-top .tooltipster-box{
-    margin-bottom:7px;
-}
-.tooltipster-sidetip.tooltipster-cv .tooltipster-content{
-    color:#fff;
-    padding:8px 16px;
-}
-.tooltipster-sidetip.tooltipster-cv .tooltipster-arrow-background{
-    display:none;
-}
-.tooltipster-sidetip.tooltipster-cv.tooltipster-bottom .tooltipster-arrow-border{
-    border-bottom-color:#2a2a2a;
-}
-.tooltipster-sidetip.tooltipster-cv.tooltipster-right .tooltipster-arrow-border{
-    border-right-color:#2a2a2a;
-}
-```
-#### Jquery jquery-image-changer
-___
-Comme mon cv est en style noir et blanc je voulais avec ce plugin permettre d'afficher certaines images en couleur au passage de la souris.
+Des méthodes dans League.vue et Journey.vue (getLeague et getJourney) auraient pu être dans une seule vue et aurait pu être appelée lorqu'on le souhaite. Ce problème se résoud notamment grâce à un v-bind dans la vue où l'on veut afficher et un props dans celle où la méthode est créee. La même remarque pour les méthodes d'ajout et de suppression de la liste. Cette amélioration pourrait être faite lors d'une version 2.0
 
-Il faut donc charger deux image par exemple profil.jpg et profil_on.jpg qui sera affiché au survol. 
+Une autre amélioration serait d'utiliser les équipes favorites et de pouvoir les afficher (derniers matchs, joueurs, etc..). Egalemment pour améliorer l'affichage des journées, de permettre d'afficher toutes les journées.
 
-_on est le suffixe par défaut mais peut être modifié.
-##### Installation
-```batch
-$ npm install jquery-image-changer --save
-```
-##### Import et utilisation dans le main.js
+### Expérience Vue.js
 
-```javascript
-import 'jquery-image-changer';
+Une fois bien assimilée, la création d'application grâce a vue.js est rapide avec peu de ligne de code.
+Au niveau des performances, c'est une framework fluide.
+Le grand avantage de Vue.js  est de pouvoir réutiliser les éléments et de combiner les vues entres elles. Plus on aura de composants (il faut évidemment qu'il y ai un sens de découper un composants), plus on pourra subdiviser notre code ! Le code sera églamment plus simple à comprendre, ce qui est également un grand avantage.
 
- /* Charge un image en couleur au passage de la souris à placer dans $(document).ready(function ()*/
-    $('.rollover').imageChanger({
-        imageTypes: 'jpg|jpeg|gif|png|svg' // =>J'ai ajouté le svg car non pris en charge par défaut
-    });
-
-```
-##### Utilisation dans le html
-```html
-<!-- utilisation de la classe rollover qui est appellée dans le script-->
-<a class="rollover"><img class="img-coop" src="static/coop.svg" title="Coop"></a>
-```
+Pour conclure, nous avons appréciée de travailler avec Vue.js même si nous n'avons pas exploité totalement ces fonctionnalités. Au début, ce framekork n'est pas facile à assimiler mais petit à petit les choses deviennent idoines et l'utilisation n'est que plus simple.
