@@ -10,9 +10,7 @@
                         Dernière journée
                     </md-button>
                 </md-layout>
-                
                 <md-layout md-align="center" md-gutter="16">
-    
                     <md-table>
                         <md-table-header>
                             <md-table-row>
@@ -53,16 +51,12 @@
                                 </md-table-cell>
                             </md-table-row>
                         </md-table-body>
-    
                     </md-table>
                 </md-layout>
-                <!--<router-link v-bind:to="{name:'League', params:{idLeague:'434'}}"></router-link>-->
-    
             </md-card-content>
         </md-card>
     </div>
 </template>
-
 <script>
 
 import axios from 'axios';
