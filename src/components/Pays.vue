@@ -7,48 +7,48 @@
     
                 <md-layout md-align="center " md-gutter="16">
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'434'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'450'}})">
                             <img class="img-league" src="../assets/ligue_1.svg" alt="logo">
                         </md-button>
                     </md-layout>
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'439'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'457'}})">
                             <img class="img-league" src="../assets/liga_nos.svg" alt="logo">
                         </md-button>
                     </md-layout>
                 </md-layout>
                 <md-layout md-align="center " md-gutter="16">
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'426'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'445'}})">
                             <img class="img-league" src="../assets/premier_league.svg" alt="logo">
                         </md-button>
                     </md-layout>
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'436'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'455'}})">
                             <img class="img-league" src="../assets/la_liga.png" alt="logo">
                         </md-button>
                     </md-layout>
                 </md-layout>
                 <md-layout md-align="center" md-gutter="16">
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'430'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'452'}})">
                             <img class="img-league" src="../assets/bundesliga.svg" alt="logo">
                         </md-button>
                     </md-layout>
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'431'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'453'}})">
                             <img class="img-league" src="../assets/bundesliga_2.svg" alt="logo">
                         </md-button>
                     </md-layout>
                 </md-layout>
                 <md-layout md-align="center" md-gutter="16">
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'433'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'449'}})">
                             <img class="img-league" src="../assets/eredivisie.svg" alt="logo">
                         </md-button>
                     </md-layout>
                     <md-layout md-align="center" md-flex="35 ">
-                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'438'}})">
+                        <md-button v-on:click.native="$router.push({name:'League', params:{idLeague:'456'}})">
                             <img class="img-league" src="../assets/serie_a.svg" alt="logo">
                         </md-button>
                     </md-layout>
